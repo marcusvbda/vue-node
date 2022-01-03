@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "serve": "nodemon ./server.js localhost 3070"
+    "start": "NODE_ENV=production node server.js",
+    "serve": "NODE_ENV=development  nodemon ./server.js localhost 3070"
   },
   "author": "",
   "license": "ISC",

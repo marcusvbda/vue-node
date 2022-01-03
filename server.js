@@ -28,11 +28,13 @@ const users = [
   },
 ];
 
-const isProduction = process.env.APP_ENV == "production";
+const isProduction = process.env.NODE_ENV == "production";
+const path = process.cwd();
+const distPath = `${path}/frontend/dist`;
 
 app.use(bodyParser.json());
 if (isProduction) {
-  app.use(express.static(process.cwd() + "/frontend/dist"));
+  app.use(express.static(distPath));
 }
 
 app.get("/api/users", (req, res) => {
@@ -50,9 +52,9 @@ app.post("/api/user", (req, res) => {
 
 app.get("/", (req, res) => {
   if (isProduction) {
-    return res.sendFile(process.cwd() + "/frontend/dist/index.html");
+    return res.sendFile(`${distPath}/index.html`);
   }
-  res.send("api is running");
+  res.send("api is running ...");
 });
 
 app.listen(port, () => {
